@@ -1,215 +1,383 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandrakanth Godasi - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Chandrakanth Godasi | Cloud & DevOps Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Inter', sans-serif;
         }
-        .section-title {
-            @apply text-3xl font-bold text-gray-800 mb-8 text-center;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero Section */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 40px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin-bottom: 20px;
+            background-color: var(--card-bg); /* Fallback if image doesn't load immediately */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+            margin-right: 15px;
+            color: var(--accent);
+        }
+
+        /* Summary */
+        .summary p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Projects */
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .project-repo {
+            font-size: 0.9rem;
+        }
+
+        .project-stack {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-list {
+            list-style-type: none;
+            color: var(--text-muted);
+        }
+
+        .project-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .project-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Education */
+        .edu-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .edu-details h3 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .edu-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .edu-meta {
+            text-align: right;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .edu-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .edu-meta {
+                text-align: left;
+            }
+            .project-header {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-700">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800">Chandrakanth Godasi</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-500 transition duration-300">Projects</a>
-                <a href="#education" class="text-gray-600 hover:text-blue-500 transition duration-300">Education</a>
-                <a href="#achievements" class="text-gray-600 hover:text-blue-500 transition duration-300">Achievements</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-500 transition duration-300">Contact</a>
-            </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-600 focus:outline-none">
-                    <i class="fas fa-bars fa-lg"></i>
-                </button>
-            </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white">
-            <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
-            <a href="#projects" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Projects</a>
-            <a href="#education" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Education</a>
-            <a href="#achievements" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Achievements</a>
-            <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Contact</a>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
+    <div class="container">
         <!-- Hero Section -->
-        <section id="hero" class="bg-blue-600 text-white">
-            <div class="container mx-auto px-6 py-24 text-center">
-                <!-- Corrected Profile Picture Code -->
-                <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg mb-6">
-                    <img src="profile.png" alt="Chandrakanth Godasi" class="w-full h-full object-cover">
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-2">Chandrakanth Godasi</h1>
-                <p class="text-lg md:text-xl mb-8">ECE Graduate | Passionate about Technology and Innovation</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/Chandrakanthck" target="_blank" class="text-white hover:text-blue-200 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/chandrakanthgodasi/" target="_blank" class="text-white hover:text-blue-200 transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="mailto:chandugodasi@gmail.com" class="text-white hover:text-blue-200 transition duration-300"><i class="fas fa-envelope fa-2x"></i></a>
-                </div>
+        <header>
+            <img src="profile.png" alt="Chandrakanth Godasi" class="profile-img" onerror="this.style.display='none'">
+            <h1>Chandrakanth Godasi</h1>
+            <div class="title">Cloud & DevOps Engineer</div>
+            
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana</span>
+                <span><i class="fas fa-phone"></i> +91-9550917627</span>
+                <span><i class="fas fa-envelope"></i> chandugodasi@gmail.com</span>
             </div>
+
+            <div class="social-links">
+                <a href="https://linkedin.com/in/chandrakanthgodasi" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Chandrakanthck" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="summary">
+            <h2><i class="fas fa-user-astronaut"></i> Professional Summary</h2>
+            <p>Motivated Cloud and DevOps Engineer (2024 Graduate) with hands-on experience provisioning AWS and Azure infrastructure, building CI/CD pipelines, and orchestrating containerized deployments. Building skills in AI-focused DevOps (MLOps) through LLM-based microservice projects. Skilled in designing secure VPCs, managing load balancing, and implementing Infrastructure as Code (IaC) to create scalable environments.</p>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">About Me</h2>
-                <p class="max-w-3xl mx-auto text-center text-lg mb-12">
-                    I am a recent B.Tech graduate in Electronics and Communication Engineering with a minor in Data Science, actively seeking opportunities to launch my career in technology. I have hands-on experience in Machine Learning, Web Development, and DevOps, and I am passionate about applying my skills to solve real-world problems. I am a quick learner, a collaborative team player, and eager to contribute to innovative projects in a dynamic environment.
-                </p>
-                <div class="max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">My Skills</h3>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Python</span>
-                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">JavaScript</span>
-                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">MySQL</span>
-                        <span class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Machine Learning</span>
-                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Deep Learning</span>
-                        <span class="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Web Development</span>
-                        <span class="bg-gray-200 text-gray-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Git & GitHub</span>
-                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">DevOps</span>
-                        <span class="bg-orange-100 text-orange-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Linux</span>
-                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">AWS</span>
-                        <span class="bg-gray-200 text-gray-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Jenkins</span>
-                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Maven</span>
-                        <span class="bg-teal-100 text-teal-800 text-sm font-medium me-2 px-3 py-1.5 rounded-full">Computer Networks</span>
-                    </div>
+        <!-- Skills Section -->
+        <section>
+            <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Cloud Platforms</h3>
+                    <p>AWS (VPC, EC2, IAM, EBS, S3, RDS, ALB, NAT Gateway, CloudWatch, ECR, EKS), Azure (Virtual Machines, VNet Peering, AKS)</p>
+                </div>
+                <div class="skill-card">
+                    <h3>DevOps & Automation</h3>
+                    <p>Docker, Kubernetes, Jenkins, Terraform, Ansible, Git</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend & APIs</h3>
+                    <p>FastAPI, Google Gemini API (LLM), REST API Integration, Secret Management (.env)</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Programming & OS</h3>
+                    <p>Python, Shell Scripting, PowerShell, Linux, Windows, System Administration</p>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Image Caption Generation</h3>
-                            <p class="text-gray-600 mb-4">Developed a model to generate image captions using CNN (VGG16, ResNet50) and LSTM architectures. Published findings at ICCDECE 2024.</p>
-                            <a href="https://ieeexplore.ieee.org/abstract/document/10548963" target="_blank" class="text-blue-500 hover:underline">View Publication &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Flight Price Forecasting</h3>
-                            <p class="text-gray-600 mb-4">Built a flight price prediction system using Random Forest Regression (87% accuracy) with a user-friendly web interface.</p>
-                             <a href="https://github.com/Chandrakanthck" target="_blank" class="text-blue-500 hover:underline">View on GitHub &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-800">Hashcat Mask Generator</h3>
-                            <p class="text-gray-600 mb-4">Created a Python tool for generating custom Hashcat masks to optimize brute-force attacks, with GPU acceleration.</p>
-                             <a href="https://github.com/Chandrakanthck/hashcat-mask-generator" target="_blank" class="text-blue-500 hover:underline">View on GitHub &rarr;</a>
-                        </div>
-                    </div>
+        <section>
+            <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Cloud-Native LLM Chat Microservice</div>
+                    <a href="https://github.com/Chandrakanthck/cloud-native-llm-chat-mlops" target="_blank" class="project-repo"><i class="fab fa-github"></i> View Repository</a>
                 </div>
+                <div class="project-stack">Python/FastAPI | Google Gemini API | Docker | Kubernetes | AWS ECR & EKS | Terraform</div>
+                <ul class="project-list">
+                    <li>Provisioned the foundational AWS infrastructure, including the EKS cluster and VPC networking, using Terraform to establish a reproducible Infrastructure as Code (IaC) environment.</li>
+                    <li>Developed a FastAPI-based AI chat microservice exposing a /chat endpoint that sends user prompts to the Google Gemini LLM API and returns generated responses in real time.</li>
+                    <li>Implemented a /health endpoint and configured Kubernetes readiness and liveness probes to ensure only healthy pods receive traffic inside the EKS cluster.</li>
+                    <li>Containerized the application using Docker and configured the pipeline to build and publish images to Amazon ECR for reusable, cloud-ready deployments.</li>
+                    <li>Authored Kubernetes Deployment and Service manifests that route external traffic from a LoadBalancer Service on port 80 to the application running on container port 8000.</li>
+                    <li>Secured Gemini API keys and other sensitive credentials using environment variables and .env-based secret management, following production security best practices.</li>
+                </ul>
             </div>
-        </section>
-        
-        <!-- Education Section -->
-        <section id="education" class="py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Education</h2>
-                <div class="max-w-3xl mx-auto">
-                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-800">Vardhaman College of Engineering, Hyderabad</h3>
-                            <p class="text-gray-600">2020 - 2024</p>
-                        </div>
-                        <p class="text-gray-700 mt-2">B.Tech in Electronics and Communication Engineering</p>
-                        <p class="text-gray-500 text-sm">Minor in Data Science | CGPA: 7.03</p>
-                    </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-800">Narayana Junior College, Hyderabad</h3>
-                            <p class="text-gray-600">2018 - 2020</p>
-                        </div>
-                        <p class="text-gray-700 mt-2">TSBIE (Class XII)</p>
-                        <p class="text-gray-500 text-sm">Aggregate: 93.5%</p>
-                    </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold text-gray-800">J.S.M High School, Warangal</h3>
-                            <p class="text-gray-600">2011 - 2018</p>
-                        </div>
-                        <p class="text-gray-700 mt-2">SSC (Class X)</p>
-                        <p class="text-gray-500 text-sm">CGPA: 9.0</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Achievements & Certifications Section -->
-        <section id="achievements" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="section-title">Achievements & Certifications</h2>
-                <ul class="max-w-3xl mx-auto list-disc list-inside space-y-3 text-lg">
-                    <li>Published paper on "Image Caption Generation Using VGG16 and ResNet50" at ICCDECE 2024.</li>
-                    <li>NVIDIA Academy: AI and Generative AI Fundamentals.</li>
-                    <li>LetsGrowMore: Full Stack Web Development Internship.</li>
-                    <li>Coapps: Data Science Internship.</li>
-                    <li>Udemy: Python Programming Certification.</li>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">AWS 3-Tier Web Application Architecture</div>
+                </div>
+                <div class="project-stack">AWS VPC | EC2 | ALB | RDS | NAT Gateway | VPC Peering</div>
+                <ul class="project-list">
+                    <li>Architected a highly available 3-tier web application infrastructure utilizing AWS VPC, EC2, ALB, and RDS, ensuring strict public and private subnet isolation.</li>
+                    <li>Configured an Application Load Balancer to optimize traffic distribution across multiple EC2 instances, maximizing high availability.</li>
+                    <li>Provisioned NAT Gateways to grant private instances secure outbound internet access without exposing them to direct public inbound traffic.</li>
+                    <li>Deployed a secure MySQL database via Amazon RDS and established VPC Peering to enable private communication across distinct network environments.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Infrastructure Automation</div>
+                </div>
+                <div class="project-stack">Ansible | YAML Playbooks | Linux</div>
+                <ul class="project-list">
+                    <li>Established an Ansible automation environment, configuring a centralized managed control node to orchestrate multiple worker servers.</li>
+                    <li>Developed YAML playbooks to automate repetitive server provisioning and configuration tasks, minimizing manual intervention.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-800 text-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-lg mb-8">I'm actively seeking new opportunities and would love to hear from you. Feel free to reach out!</p>
-                <a href="mailto:chandugodasi@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">Say Hello</a>
-                <div class="flex justify-center space-x-6 mt-10">
-                    <a href="https://github.com/Chandrakanthck" target="_blank" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/chandrakanthgodasi/" target="_blank" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
+        <!-- Education Section -->
+        <section>
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="edu-card">
+                <div class="edu-details">
+                    <h3>Vardhaman College of Engineering, Hyderabad</h3>
+                    <p>B.Tech in Electronics and Communication Engineering | Minor: Data Science</p>
+                </div>
+                <div class="edu-meta">
+                    <p>CGPA: 7.03</p>
+                    <p>2020 - 2024</p>
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Chandrakanth Godasi. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-        for (let link of mobileMenuLinks) {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        }
-    </script>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Chandrakanth Godasi. All Rights Reserved.</p>
+        </footer>
+    </div>
 
 </body>
 </html>
